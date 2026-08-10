@@ -16,16 +16,53 @@
         <h1>📚 Student Task Manager</h1>
         <p class="subtitle">Organize your studies. Get things done.</p>
 
+        <!-- Task Statistics -->
+        <div class="stats">
+
+            <div class="stat-card">
+                <h3 id="totalTasks">0</h3>
+                <p>Total</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="completedTasks">0</h3>
+                <p>Completed</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="remainingTasks">0</h3>
+                <p>Remaining</p>
+            </div>
+
+        </div>
+
+        <!-- Add Task -->
         <div class="task-input">
 
-            <input 
-                type="text" 
-                id="taskInput" 
+            <input
+                type="text"
+                id="taskInput"
                 placeholder="Enter your task..."
             >
 
-            <input 
-                type="date" 
+            <select id="subjectInput">
+                <option value="">Subject</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="Physics">Physics</option>
+                <option value="English">English</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <select id="priorityInput">
+                <option value="Low">🟢 Low</option>
+                <option value="Medium" selected>🟡 Medium</option>
+                <option value="High">🔴 High</option>
+            </select>
+
+            <input
+                type="date"
                 id="taskDate"
             >
 
@@ -35,6 +72,7 @@
 
         </div>
 
+        <!-- Tasks -->
         <div class="task-section">
 
             <h2>My Tasks</h2>

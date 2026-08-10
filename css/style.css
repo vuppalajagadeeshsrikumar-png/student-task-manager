@@ -12,7 +12,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 900px;
     margin: 50px auto;
 }
 
@@ -27,6 +27,30 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* Statistics */
+
+.stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+/* Task input */
+
 .task-input {
     background: white;
     padding: 20px;
@@ -34,13 +58,16 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.task-input input {
+.task-input input,
+.task-input select {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
     flex: 1;
+    min-width: 0;
 }
 
 .task-input button {
@@ -52,10 +79,17 @@ h1 {
     color: white;
 }
 
+.task-input button:hover {
+    background: #444;
+}
+
+/* Task section */
+
 .task-section {
     background: white;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .task-section h2 {
@@ -69,11 +103,39 @@ h1 {
 #taskList li {
     padding: 15px;
     border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.completed {
-    text-decoration: line-through;
-    opacity: 0.5;
+.task-info {
+    flex: 1;
+}
+
+.task-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.task-details {
+    font-size: 13px;
+    color: #666;
+}
+
+.priority-high {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.priority-medium {
+    color: #e0a000;
+    font-weight: bold;
+}
+
+.priority-low {
+    color: #2e7d32;
+    font-weight: bold;
 }
 
 .complete-btn,
@@ -82,5 +144,27 @@ h1 {
     background: none;
     cursor: pointer;
     font-size: 18px;
-    margin-left: 8px;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .task-input {
+        flex-direction: column;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+    #taskList li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
