@@ -51,6 +51,41 @@ function updateStats() {
 // ==============================
 // DISPLAY TASKS
 // ==============================
+function getDeadlineStatus(date) {
+
+    if (!date) {
+        return "";
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const deadline = new Date(date + "T00:00:00");
+    deadline.setHours(0, 0, 0, 0);
+
+    const difference =
+        Math.ceil(
+            (deadline - today) / (1000 * 60 * 60 * 24)
+        );
+
+    if (difference < 0) {
+        return `<span class="deadline-overdue">🔴 Overdue</span>`;
+    }
+
+    if (difference === 0) {
+        return `<span class="deadline-today">🟠 Due Today</span>`;
+    }
+
+    if (difference === 1) {
+        return `<span class="deadline-soon">🟡 Due Tomorrow</span>`;
+    }
+
+    if (difference <= 7) {
+        return `<span class="deadline-soon">🟡 Due in ${difference} days</span>`;
+    }
+
+    return `<span class="deadline-upcoming">🟢 Due ${date}</span>`;
+}
 
 function displayTasks() {
 
@@ -146,11 +181,7 @@ function displayTasks() {
                         ${task.priority}
                     </span>
 
-                    ${
-                        task.date
-                        ? `&nbsp; | &nbsp; 📅 ${task.date}`
-                        : ""
-                    }
+                   ${task.completed ? "✅ Completed" : getDeadlineStatus(task.date)}
 
                 </div>
 

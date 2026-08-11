@@ -345,3 +345,24 @@ body.dark-mode #cancelEditBtn {
     background: #444;
     color: white;
 }
+/* Deadline Status */
+
+.deadline-overdue {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.deadline-today {
+    color: #e65100;
+    font-weight: bold;
+}
+
+.deadline-soon {
+    color: #f9a825;
+    font-weight: bold;
+}
+
+.deadline-upcoming {
+    color: #2e7d32;
+    font-weight: bold;
+}
