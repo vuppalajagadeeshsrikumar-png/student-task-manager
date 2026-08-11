@@ -118,7 +118,56 @@
         </div>
 
     </div>
+     <!-- Edit Task Modal -->
 
+<div id="editModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>✏️ Edit Task</h2>
+
+        <input
+            type="text"
+            id="editTaskInput"
+            placeholder="Task name"
+        >
+
+        <select id="editSubjectInput">
+            <option value="">Subject</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="Physics">Physics</option>
+            <option value="English">English</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <select id="editPriorityInput">
+            <option value="Low">🟢 Low</option>
+            <option value="Medium">🟡 Medium</option>
+            <option value="High">🔴 High</option>
+        </select>
+
+        <input
+            type="date"
+            id="editDateInput"
+        >
+
+        <div class="modal-buttons">
+
+            <button id="cancelEditBtn">
+                Cancel
+            </button>
+
+            <button id="saveEditBtn">
+                Save Changes
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
     <script src="js/script.js"></script>
 
 </body>
