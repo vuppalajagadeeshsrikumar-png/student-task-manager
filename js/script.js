@@ -110,13 +110,17 @@ function displayTasks() {
             </div>
 
             <div>
-                <button class="complete-btn">✅</button>
-                <button class="delete-btn">🗑️</button>
-            </div>
+    <button class="complete-btn">✅</button>
+    <button class="edit-btn">✏️</button>
+    <button class="delete-btn">🗑️</button>
+</div>
+
         `;
 
-        const completeBtn = li.querySelector(".complete-btn");
-        const deleteBtn = li.querySelector(".delete-btn");
+       const completeBtn = li.querySelector(".complete-btn");
+const editBtn = li.querySelector(".edit-btn");
+const deleteBtn = li.querySelector(".delete-btn");
+
 
         completeBtn.addEventListener("click", function () {
 
@@ -125,6 +129,19 @@ function displayTasks() {
             saveTasks();
             displayTasks();
         });
+        editBtn.addEventListener("click", function () {
+
+    const newText = prompt("Edit your task:", task.text);
+
+    if (newText === null || newText.trim() === "") {
+        return;
+    }
+
+    tasks[index].text = newText.trim();
+
+    saveTasks();
+    displayTasks();
+});
 
         deleteBtn.addEventListener("click", function () {
 
