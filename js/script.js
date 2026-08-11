@@ -9,7 +9,11 @@ const totalTasks = document.getElementById("totalTasks");
 const completedTasks = document.getElementById("completedTasks");
 const remainingTasks = document.getElementById("remainingTasks");
 
-// Load saved tasks
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+const subjectFilter = document.getElementById("subjectFilter");
+const priorityFilter = document.getElementById("priorityFilter");
+
 let tasks = JSON.parse(localStorage.getItem("studentTasks")) || [];
 
 function saveTasks() {
@@ -30,7 +34,41 @@ function displayTasks() {
 
     taskList.innerHTML = "";
 
+    const searchText = searchInput.value.toLowerCase();
+    const status = statusFilter.value;
+    const subject = subjectFilter.value;
+    const priority = priorityFilter.value;
+
     tasks.forEach(function (task, index) {
+
+        // Search filter
+        const matchesSearch =
+            task.text.toLowerCase().includes(searchText);
+
+        // Status filter
+        const matchesStatus =
+            status === "all" ||
+            (status === "active" && !task.completed) ||
+            (status === "completed" && task.completed);
+
+        // Subject filter
+        const matchesSubject =
+            subject === "all" ||
+            task.subject === subject;
+
+        // Priority filter
+        const matchesPriority =
+            priority === "all" ||
+            task.priority === priority;
+
+        if (
+            !matchesSearch ||
+            !matchesStatus ||
+            !matchesSubject ||
+            !matchesPriority
+        ) {
+            return;
+        }
 
         const li = document.createElement("li");
 
@@ -57,7 +95,7 @@ function displayTasks() {
 
                 <div class="task-details">
 
-                    📚 ${task.subject || "Other"}
+                    📚 ${task.subject || "No subject"}
 
                     &nbsp; | &nbsp;
 
@@ -72,15 +110,8 @@ function displayTasks() {
             </div>
 
             <div>
-
-                <button class="complete-btn">
-                    ✅
-                </button>
-
-                <button class="delete-btn">
-                    🗑️
-                </button>
-
+                <button class="complete-btn">✅</button>
+                <button class="delete-btn">🗑️</button>
             </div>
         `;
 
@@ -93,8 +124,6 @@ function displayTasks() {
 
             saveTasks();
             displayTasks();
-            updateStats();
-
         });
 
         deleteBtn.addEventListener("click", function () {
@@ -103,8 +132,6 @@ function displayTasks() {
 
             saveTasks();
             displayTasks();
-            updateStats();
-
         });
 
         taskList.appendChild(li);
@@ -121,23 +148,17 @@ addTaskBtn.addEventListener("click", function () {
     const date = taskDate.value;
 
     if (taskText === "") {
-
         alert("Please enter a task!");
-
         return;
     }
 
-    const newTask = {
-
+    tasks.push({
         text: taskText,
         subject: subject,
         priority: priority,
         date: date,
         completed: false
-
-    };
-
-    tasks.push(newTask);
+    });
 
     saveTasks();
     displayTasks();
@@ -146,8 +167,13 @@ addTaskBtn.addEventListener("click", function () {
     subjectInput.value = "";
     priorityInput.value = "Medium";
     taskDate.value = "";
-
 });
 
-// Load tasks when page opens
+// Search and filters
+searchInput.addEventListener("input", displayTasks);
+statusFilter.addEventListener("change", displayTasks);
+subjectFilter.addEventListener("change", displayTasks);
+priorityFilter.addEventListener("change", displayTasks);
+
+// Display tasks when page loads
 displayTasks();

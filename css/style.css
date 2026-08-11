@@ -168,3 +168,38 @@ h1 {
         align-items: flex-start;
     }
 }
+
+/* Search and Filters */
+
+.filters {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.filters input,
+.filters select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.filters input:focus,
+.filters select:focus {
+    outline: none;
+    border-color: #555;
+}
+
+@media (max-width: 700px) {
+
+    .filters {
+        flex-direction: column;
+    }
+
+}
