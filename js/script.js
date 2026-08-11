@@ -45,6 +45,36 @@ function updateStats() {
     totalTasks.textContent = total;
     completedTasks.textContent = completed;
     remainingTasks.textContent = remaining;
+
+
+    // Progress bar
+
+    const progressPercent =
+        document.getElementById("progressPercent");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const progressText =
+        document.getElementById("progressText");
+
+
+    let percentage = 0;
+
+    if (total > 0) {
+        percentage =
+            Math.round((completed / total) * 100);
+    }
+
+
+    progressPercent.textContent =
+        percentage + "%";
+
+    progressFill.style.width =
+        percentage + "%";
+
+    progressText.textContent =
+        `${completed} of ${total} tasks completed`;
 }
 
 
